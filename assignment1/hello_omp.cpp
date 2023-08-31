@@ -3,7 +3,7 @@
 
 int main() {
 
-	int n = 100;
+	int n = 10000000;
 	int *array =  (int*) malloc (sizeof(int)*n);
 
 #pragma omp parallel
@@ -12,10 +12,13 @@ int main() {
     unsigned short rank;
     size = omp_get_num_threads();
     rank = omp_get_thread_num();
-    auto seed = seed48(&rank);
+    unsigned short seed[3];
+    seed[0] = rank;
+	seed[1] = rank + 1;
+	seed[2] = rank + 2;
 
     for (int i = rank; i < n; i += size) {
-	    array[i] = rand();
+	    array[i] = nrand48(seed);
     }
 
 
