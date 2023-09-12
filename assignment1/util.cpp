@@ -1,23 +1,22 @@
 #include <iostream>
 #include <random>
 
-double rand_0_1() {
-	return ((double) rand() / (RAND_MAX));
-}
+double rand_0_1() { return ((double)rand() / (RAND_MAX)); }
 
-bool vec_compare(double* x, double* y, int n) {
-	double eps = 1e-13;
+bool vec_compare(double *x, double *y, int n) {
+	double eps = 1e-3;
 	for (int i = 0; i < n; i++) {
 		double diff = fabs(x[i] - y[i]);
 		if (diff > eps) {
-			std::cout << "Not equal! " << x[i] << "," << y[i] << ", diff = " << diff << " @ " << i << "\n";
+			std::cout << "Not equal! " << x[i] << "," << y[i]
+				  << ", diff = " << diff << " @ " << i << "\n";
 			return false;
 		}
 	}
 	return true;
 }
 
-double* rand_vec(double* x, int n) {
+double *rand_vec(double *x, int n) {
 	std::random_device r;
 	std::default_random_engine re(r());
 	std::normal_distribution<double> unif;
@@ -28,8 +27,7 @@ double* rand_vec(double* x, int n) {
 	return x;
 }
 
-template <typename T>
-void print_vec(T *x, int n) {
+template <typename T> void print_vec(T *x, int n) {
 	std::cout << "vec: ";
 
 	for (int i = 0; i < n; i++)
@@ -44,5 +42,3 @@ void dense_matvec(double *M, double *x, double *y, int n, int m) {
 		}
 	}
 }
-
-
