@@ -8,5 +8,6 @@ for line in sys.stdin:
         arr.append(int(line))
 
 plt.hist(arr, 200)
+plt.title(f"distribution of {len(arr)} longs")
 plt.show()
 
